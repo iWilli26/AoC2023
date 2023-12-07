@@ -18,27 +18,38 @@ for line in lines[2:]:
     elif line[0].isnumeric():
         temp.append(line.replace("\n","").split(" "))
 
-def transform(seeds, source, destination, incr):
+def transform(seeds, source, destination, incr, changed):
     result = []
-    for seed in seeds:
-        if source<=int(seed) and int(seed)<source+incr:
-            result.append(destination + int(seed) - source)
+    for i in range(len(seeds)):
+        if int(seeds[i]) == changed[i]:
+            result.append(int(seeds[i]))
+            continue
+        if source<=int(seeds[i]) and int(seeds[i])<=source+incr-1:
+            result.append(destination + int(seeds[i]) - source)
+            changed[i]=destination + int(seeds[i]) - source
         else:
-            result.append(int(seed))
-    return result
+            result.append(int(seeds[i]))
+    print("changed", changed)
+    return result, changed
+
+temp = []
+for s in seeds:
+    temp.append(int(s))
+seeds = temp
+
+print("seeds", seeds)
 
 for map in maps:
     result = []
+    changed = [""]*len(seeds)
     for line in map:
         source = int(line[1])
         destination = int(line[0])
         incr = int(line[2])
-        seeds = transform(seeds, source, destination, incr)
+        seeds, changed = transform(seeds, source, destination, incr, changed)
         result.append(seeds)
     
-    #fuck it
-    #faut pas faire ligne par ligne ??? sfqgze,smlfkazo
-    print(seeds, map)
+    print(seeds)
 
 lowest = math.inf
 for seed in seeds:
