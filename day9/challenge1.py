@@ -25,7 +25,6 @@ for line in lines:
         values = newValues
         visual[str(i)] = values
         i+=1
-    # print(visual)
     for i in range(len(visual.keys())-1,-1,-1):
         if i== len(visual.keys())-1:
             continue
