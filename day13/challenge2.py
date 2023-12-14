@@ -1,5 +1,3 @@
-import math
-
 file1 = open("./day13/input.txt", "r")
 lines = file1.readlines()
 file1.close()
@@ -19,7 +17,6 @@ for i in range(len(lines)):
         pattern.append(lines[i])
 
 def count_differences(string1, string2):
-    # Ensure the strings have the same length
     if len(string1) != len(string2):
         raise ValueError("Input strings must have the same length")
 
@@ -40,9 +37,7 @@ for pattern in patterns:
         sumDiff=0
         for i in range(len(top)):
             sumDiff += count_differences(list(top[i]), list(bottom[::-1][i]))
-        
-        # sumDiff += count_differences(list(top), list(bottom))
-        
+                
         if sumDiff == 1:
             sum+=whereColumn*100
             for j in range(len(pattern[(whereColumn-test):whereColumn][:test])):    
@@ -60,11 +55,8 @@ for pattern in patterns:
             characterReflection = 0
             test = min(whereLine, len(pattern[i])-whereLine)
             
-            # print(pattern[i][:whereLine] + "|" + pattern[i][whereLine:],test)
             left = pattern[i][whereLine-test:whereLine]
             right = pattern[i][whereLine:whereLine+test]
-            # print(left)
-            # print(right)
 
             sumDiff += count_differences(list(left), list(right[::-1]))
 
@@ -78,9 +70,4 @@ for pattern in patterns:
             sum+=whereLine
             break
 
-    
-        
-
 print(sum)
-            
-# print(count_differences("abaa", "bbbb"))
