@@ -42,7 +42,7 @@ for pattern in patterns:
             sum+=whereColumn*100
             for j in range(len(pattern[(whereColumn-test):whereColumn][:test])):    
                 print(pattern[(whereColumn-test):whereColumn][:test][j])
-            print("----------------")
+            print("-"*len(pattern[0]))
             for j in range(len(pattern[whereColumn:][:test])):
                 print(pattern[whereColumn:][:test][j])
             print("\n")
@@ -71,3 +71,4 @@ for pattern in patterns:
             break
 
 print(sum)
+
